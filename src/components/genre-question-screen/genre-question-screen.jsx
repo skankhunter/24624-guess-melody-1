@@ -9,40 +9,57 @@ class GenreQuestionScreen extends React.PureComponent {
     this.state = {
       activePlayer: -1,
     };
+
+    this._submitForm = this._submitForm.bind(this);
+    this._onChangeActivePlayer = this._onChangeActivePlayer.bind(this);
   }
 
+  _submitForm(evt) {
+    evt.preventDefault();
+    this.props.onAnswer();
+  }
+
+  _onChangeActivePlayer(i) {
+    const isActivePlayer = -1;
+
+    this.setState({
+      activePlayer: this.state.activePlayer === i ? isActivePlayer : i
+    });
+  }
+
+
   render() {
-    const {question, onAnswer} = this.props;
+    const {question} = this.props;
     const {
       answers,
       genre,
     } = question;
 
-    return <section className="game__screen">
-      <h2 className="game__title">Выберите {genre} треки</h2>
-      <form className="game__tracks" onSubmit={(evt) => {
-        evt.preventDefault();
-        onAnswer();
-      }}>
-        {answers.map((it, i) => <div className="track" key={`answer-${i}`}>
-          <AudioPlayer
-            src={it.src}
-            isPlaying={i === this.state.activePlayer}
-            onPlayButtonClick={() => this.setState({
-              activePlayer: this.state.activePlayer === i ? -1 : i
-            })}
-          />
-          <div className="game__answer">
-            <input className="game__input visually-hidden" type="checkbox" name="answer" value={`answer-${i}`} id={`answer-${i}`}/>
-            <label className="game__check" htmlFor={`answer-${i}`}>
-              Отметить
-            </label>
-          </div>
-        </div>)}
+    return (
+      <section className="game__screen">
+        <h2 className="game__title">Выберите {genre} треки</h2>
+        <form className="game__tracks" onSubmit={this._submitForm}>
+          {answers.map((it, i) => (
+            <div className="track" key={`answer-${i}`}>
+              <AudioPlayer
+                src={it.src}
+                isPlaying={i === this.state.activePlayer}
+                onPlayButtonClick={() => this._onChangeActivePlayer(i)}
+              />
+              <div className="game__answer">
+                <input className="game__input visually-hidden" type="checkbox" name="answer" value={`answer-${i}`} id={`answer-${i}`}/>
+                <label className="game__check" htmlFor={`answer-${i}`}>
+                  Отметить
+                </label>
+              </div>
+            </div>)
+          )
+          }
 
-        <button className="game__submit button" type="submit">Ответить</button>
-      </form>
-    </section>;
+          <button className="game__submit button" type="submit">Ответить</button>
+        </form>
+      </section>
+    );
   }
 }
 

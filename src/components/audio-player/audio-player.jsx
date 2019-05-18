@@ -19,19 +19,21 @@ class AudioPlayer extends PureComponent {
   render() {
     const {isLoading, isPlaying} = this.state;
 
-    return <div className="game__track">
-      <button
-        className={`track__button track__button--${isPlaying ? `pause` : `play`}`}
-        type="button"
-        disabled={isLoading}
-        onClick={this._onPlayButtonClick}
-      />
-      <div className="track__status">
-        <audio
-          ref={this._audioRef}
+    return (
+      <div className="game__track">
+        <button
+          className={`track__button track__button--${isPlaying ? `pause` : `play`}`}
+          type="button"
+          disabled={isLoading}
+          onClick={this._onPlayButtonClick}
         />
+        <div className="track__status">
+          <audio
+            ref={this._audioRef}
+          />
+        </div>
       </div>
-    </div>;
+    );
   }
 
   componentDidMount() {
