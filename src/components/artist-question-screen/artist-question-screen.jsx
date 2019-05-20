@@ -13,14 +13,20 @@ const ArtistQuestionScreen = ({question, onAnswer}) => {
       <audio />
     </div>
 
-    <form className="game__artist" onChange={onAnswer}>
-      {answers.map((it, i) => <div className="artist" key={i}>
-        <input className="artist__input visually-hidden" type="radio" name="answer" value={`artist-${i}`} id={`artist-${i}`} />
-        <label className="artist__name" htmlFor={`artist-${i}`}>
-          <img className="artist__picture" src={it.picture} alt={it.artist} />
-          {it.artist}
-        </label>
-      </div>)}
+    <form className="game__artist">
+      {answers.map((it, i) => (
+        <div className="artist" key={i}>
+          <input className="artist__input visually-hidden"
+            type="radio" name="answer"
+            value={`artist-${i}`}
+            id={`artist-${i}`}
+            onClick={() => onAnswer(it)}/>
+          <label className="artist__name" htmlFor={`artist-${i}`}>
+            <img className="artist__picture" src={it.picture} alt={it.artist} />
+            {it.artist}
+          </label>
+        </div>
+      ))}
     </form>
   </section>;
 };

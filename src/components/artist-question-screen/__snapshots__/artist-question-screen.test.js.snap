@@ -20,7 +20,6 @@ exports[`ArtistQuestionScreen is rendered correctly 1`] = `
   </div>
   <form
     className="game__artist"
-    onChange={[MockFunction]}
   >
     <div
       className="artist"
@@ -29,6 +28,7 @@ exports[`ArtistQuestionScreen is rendered correctly 1`] = `
         className="artist__input visually-hidden"
         id="artist-0"
         name="answer"
+        onClick={[Function]}
         type="radio"
         value="artist-0"
       />
@@ -51,6 +51,7 @@ exports[`ArtistQuestionScreen is rendered correctly 1`] = `
         className="artist__input visually-hidden"
         id="artist-1"
         name="answer"
+        onClick={[Function]}
         type="radio"
         value="artist-1"
       />
@@ -73,6 +74,7 @@ exports[`ArtistQuestionScreen is rendered correctly 1`] = `
         className="artist__input visually-hidden"
         id="artist-2"
         name="answer"
+        onClick={[Function]}
         type="radio"
         value="artist-2"
       />

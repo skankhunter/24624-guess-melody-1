@@ -6,17 +6,22 @@ class GenreQuestionScreen extends React.PureComponent {
   constructor(props) {
     super(props);
 
+    const {question} = this.props;
+    const {answers} = question;
+
     this.state = {
       activePlayer: -1,
+      userAnswer: new Array(answers.length).fill(false),
     };
 
     this._submitForm = this._submitForm.bind(this);
     this._onChangeActivePlayer = this._onChangeActivePlayer.bind(this);
+    this._onInputChanged = this._onInputChanged.bind(this);
   }
 
   _submitForm(evt) {
     evt.preventDefault();
-    this.props.onAnswer();
+    this.props.onAnswer(this.state.userAnswer);
   }
 
   _onChangeActivePlayer(i) {
@@ -27,6 +32,11 @@ class GenreQuestionScreen extends React.PureComponent {
     });
   }
 
+  _onInputChanged(i) {
+    const userAnswer = [...this.state.userAnswer];
+    userAnswer[i] = !userAnswer[i];
+    this.setState({userAnswer});
+  }
 
   render() {
     const {question} = this.props;
@@ -47,7 +57,14 @@ class GenreQuestionScreen extends React.PureComponent {
                 onPlayButtonClick={() => this._onChangeActivePlayer(i)}
               />
               <div className="game__answer">
-                <input className="game__input visually-hidden" type="checkbox" name="answer" value={`answer-${i}`} id={`answer-${i}`}/>
+                <input className="game__input visually-hidden"
+                  checked={this.state.userAnswer[i]}
+                  type="checkbox"
+                  name="answer"
+                  value={`answer-${i}`}
+                  id={`answer-${i}`}
+                  onChange={() => this._onInputChanged(i)}
+                />
                 <label className="game__check" htmlFor={`answer-${i}`}>
                   Отметить
                 </label>
@@ -55,7 +72,6 @@ class GenreQuestionScreen extends React.PureComponent {
             </div>)
           )
           }
-
           <button className="game__submit button" type="submit">Ответить</button>
         </form>
       </section>
