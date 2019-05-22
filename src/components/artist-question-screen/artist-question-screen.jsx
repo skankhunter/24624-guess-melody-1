@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ArtistQuestionInput from "./artist-question-input/artist-question-input.jsx";
 
 const ArtistQuestionScreen = ({question, onAnswer}) => {
   const {
@@ -15,17 +16,23 @@ const ArtistQuestionScreen = ({question, onAnswer}) => {
 
     <form className="game__artist">
       {answers.map((it, i) => (
-        <div className="artist" key={i}>
-          <input className="artist__input visually-hidden"
-            type="radio" name="answer"
-            value={`artist-${i}`}
-            id={`artist-${i}`}
-            onClick={() => onAnswer(it)}/>
-          <label className="artist__name" htmlFor={`artist-${i}`}>
-            <img className="artist__picture" src={it.picture} alt={it.artist} />
-            {it.artist}
-          </label>
-        </div>
+        <ArtistQuestionInput
+          key={i}
+          index={i}
+          item={it}
+          onAnswer={onAnswer}
+        />
+        // <div className="artist" key={i}>
+        //   <input className="artist__input visually-hidden"
+        //     type="radio" name="answer"
+        //     value={`artist-${i}`}
+        //     id={`artist-${i}`}
+        //     onClick={() => onAnswer(it)}/>
+        //   <label className="artist__name" htmlFor={`artist-${i}`}>
+        //     <img className="artist__picture" src={it.picture} alt={it.artist} />
+        //     {it.artist}
+        //   </label>
+        // </div>
       ))}
     </form>
   </section>;

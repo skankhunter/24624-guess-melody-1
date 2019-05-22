@@ -1,10 +1,13 @@
 import React from "react";
-import {configure, shallow} from "enzyme";
+import {configure, mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 import GenreQuestionScreen from "./genre-question-screen.jsx";
 
 configure({adapter: new Adapter()});
+
+window.HTMLMediaElement.prototype.play = () => {};
+window.HTMLMediaElement.prototype.pause = () => {};
 
 const mock = {
   question: {
@@ -34,7 +37,7 @@ const mock = {
 it(`When user answers genre question form is not sent`, () => {
   const {question} = mock;
   const onAnswer = jest.fn();
-  const genreQuestion = shallow(<GenreQuestionScreen
+  const genreQuestion = mount(<GenreQuestionScreen
     onAnswer={onAnswer}
     question={question}
   />);
@@ -51,7 +54,7 @@ it(`When user answers genre question form is not sent`, () => {
 
 it(`Rendered checkboxes are synchronized with state`, () => {
   const {question} = mock;
-  const genreQuestion = shallow(<GenreQuestionScreen
+  const genreQuestion = mount(<GenreQuestionScreen
     onAnswer={jest.fn()}
     question={question}
   />);
@@ -75,7 +78,7 @@ it(`Rendered checkboxes are synchronized with state`, () => {
 it(`User answer passed to callback is consistent with internal component state`, () => {
   const {question} = mock;
   const onAnswer = jest.fn();
-  const genreQuestion = shallow(<GenreQuestionScreen
+  const genreQuestion = mount(<GenreQuestionScreen
     onAnswer={onAnswer}
     question={question}
   />);

@@ -7,19 +7,21 @@ import App from "./components/app/app.jsx";
 import questions from "./mocks/questions";
 import {reducer} from "./reducer";
 
+const gameSettings = {
+  gameTime: 5,
+  errorCount: 3,
+};
+
 const init = (gameQuestions) => {
-  const settings = {
-    gameTime: 5,
-    errorCount: 3,
-  };
+  const {errorCount, gameTime} = gameSettings;
   const store = createStore(reducer);
 
 
   ReactDOM.render(
       <Provider store={store}>
         <App
-          errorCount={settings.errorCount}
-          gameTime={settings.gameTime}
+          maxMistakes={errorCount}
+          gameTime={gameTime}
           questions={gameQuestions}
         />
       </Provider>,

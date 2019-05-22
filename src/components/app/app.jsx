@@ -31,15 +31,17 @@ class App extends PureComponent {
     const {onUserAnswer} = this.props;
 
     switch (question.type) {
-      case `genre`: return <QuestionGenreScreen
-        question={question}
-        onAnswer={(userAnswer) => onUserAnswer(userAnswer, question)}
-      />;
+      case `genre`:
+        return <QuestionGenreScreen
+          question={question}
+          onAnswer={(userAnswer) => onUserAnswer(userAnswer, question)}
+        />;
 
-      case `artist`: return <ArtistQuestionScreen
-        question={question}
-        onAnswer={(userAnswer) => onUserAnswer(userAnswer, question)}
-      />;
+      case `artist`:
+        return <ArtistQuestionScreen
+          question={question}
+          onAnswer={(userAnswer) => onUserAnswer(userAnswer, question)}
+        />;
     }
 
     return null;

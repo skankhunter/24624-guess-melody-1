@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AudioPlayer from '../audio-player/audio-player.jsx';
+import GenreQuestionInput from "./genre-question-input/genre-question-input.jsx";
+import AudioPlayer from "../audio-player/audio-player.jsx";
 
 class GenreQuestionScreen extends React.PureComponent {
   constructor(props) {
@@ -33,9 +34,12 @@ class GenreQuestionScreen extends React.PureComponent {
   }
 
   _onInputChanged(i) {
-    const userAnswer = [...this.state.userAnswer];
-    userAnswer[i] = !userAnswer[i];
-    this.setState({userAnswer});
+    const self = this;
+    return function () {
+      const userAnswer = [...self.state.userAnswer];
+      userAnswer[i] = !userAnswer[i];
+      self.setState({userAnswer});
+    };
   }
 
   render() {
@@ -56,20 +60,15 @@ class GenreQuestionScreen extends React.PureComponent {
                 isPlaying={i === this.state.activePlayer}
                 onPlayButtonClick={() => this._onChangeActivePlayer(i)}
               />
-              <div className="game__answer">
-                <input className="game__input visually-hidden"
-                  checked={this.state.userAnswer[i]}
-                  type="checkbox"
-                  name="answer"
-                  value={`answer-${i}`}
-                  id={`answer-${i}`}
-                  onChange={() => this._onInputChanged(i)}
-                />
-                <label className="game__check" htmlFor={`answer-${i}`}>
-                  Отметить
-                </label>
-              </div>
-            </div>)
+              <GenreQuestionInput
+                key={i}
+                index={i}
+                onAnswer={this._onInputChanged(i)}
+                item={it}
+                isChecked={this.state.userAnswer[i]}
+              />
+            </div>
+          )
           )
           }
           <button className="game__submit button" type="submit">Ответить</button>
