@@ -26,15 +26,15 @@ exports[`ArtistQuestionScreen is rendered correctly 1`] = `
     >
       <input
         className="artist__input visually-hidden"
-        id="artist-undefined"
+        id="artist-0"
         name="answer"
         onClick={[Function]}
         type="radio"
-        value="artist-undefined"
+        value="artist-0"
       />
       <label
         className="artist__name"
-        htmlFor="artist-undefined"
+        htmlFor="artist-0"
       >
         <img
           alt="John Snow"
@@ -49,15 +49,15 @@ exports[`ArtistQuestionScreen is rendered correctly 1`] = `
     >
       <input
         className="artist__input visually-hidden"
-        id="artist-undefined"
+        id="artist-1"
         name="answer"
         onClick={[Function]}
         type="radio"
-        value="artist-undefined"
+        value="artist-1"
       />
       <label
         className="artist__name"
-        htmlFor="artist-undefined"
+        htmlFor="artist-1"
       >
         <img
           alt="Jack Daniels"
@@ -72,15 +72,15 @@ exports[`ArtistQuestionScreen is rendered correctly 1`] = `
     >
       <input
         className="artist__input visually-hidden"
-        id="artist-undefined"
+        id="artist-2"
         name="answer"
         onClick={[Function]}
         type="radio"
-        value="artist-undefined"
+        value="artist-2"
       />
       <label
         className="artist__name"
-        htmlFor="artist-undefined"
+        htmlFor="artist-2"
       >
         <img
           alt="Jim Beam"
