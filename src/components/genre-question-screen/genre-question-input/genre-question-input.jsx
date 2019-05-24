@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const GenreQuestionInput = ({item, onAnswer, isChecked, index}) => {
-  const {} = item;
   return (
     <div className="game__answer">
       <input className="game__input visually-hidden"
