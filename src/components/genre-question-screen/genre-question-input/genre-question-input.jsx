@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const GenreQuestionInput = ({item, onAnswer, isChecked, index}) => {
+const GenreQuestionInput = ({onAnswer, isChecked, index}) => {
   return (
     <div className="game__answer">
       <input className="game__input visually-hidden"
